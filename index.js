@@ -1,4 +1,4 @@
-import { Form } from './scripts/form.js'
+import { Form } from './src/Form.js'
 
 const form = new Form({
   wrapper: document.querySelector('main') || document.querySelector('.wrapper') || document.body
