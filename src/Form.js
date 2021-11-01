@@ -78,11 +78,9 @@ export class Form {
         <button class="btn btn_close" data-type="close">
           <i class="fas fa-times"></i>
         </button>
-  
         <h2 class="form-title">
           enter your details
         </h2>
-  
         <div class="form-item item-email">
           <input class="input" id="inputEmail" type="email" placeholder=" ">
           <label class="label" id="labelEmail" for="inputEmail">
@@ -102,7 +100,6 @@ export class Form {
             Keep me Signer in
           </label>
         </div>
-  
         <button class="btn btn_submit" type="submit" data-type="submit">
           Sign-in
         </button>
