@@ -1,3 +1,4 @@
+/* ----- reset */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
 * {
   padding: 0;
@@ -84,6 +85,7 @@ h6 {
   font-weight: 400;
 }
 
+/* reset ----- */
 * {
   font-family: "Montserrat", sans-serif;
 }
