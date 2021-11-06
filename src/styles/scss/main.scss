@@ -1,8 +1,5 @@
-/* ----- reset */
 @import "./reset";
-/* reset ----- */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
-
 @mixin d-flex-column {
   display: flex;
   align-items: center;
@@ -19,7 +16,6 @@
   align-items: center;
   justify-content: flex-start;
 }
-
 $backgrounColor: rgb(75, 75, 75);
 $textColor: rgb(255, 255, 255);
 $textColorHovered: #ffd700;
@@ -31,9 +27,7 @@ $inputColor: rgb(220, 220, 220);
 }
 .app {
   position: relative;
-
   @include d-flex-column;
-
   min-width: 100vw;
   min-height: 100vh;
   overflow: hidden;
@@ -57,42 +51,31 @@ $inputColor: rgb(220, 220, 220);
 }
 .footer {
   text-align: center;
-
   background-color: $backgrounColor;
 }
 .footer__link {
   margin: 0 20px;
-
   font-size: 20px;
   color: $textColor;
-
   transition: color 0.3s;
-
   &:hover {
     color: $textColorHovered;
   }
 }
-// ----- form //
 .btn {
   font-size: 18px;
   color: $textColor;
-
   background-color: $buttonColor;
-
-  transition: all .2s;
-
+  transition: all 0.2s;
   cursor: pointer;
-
   &:hover {
     background-color: $buttonColorHovered;
   }
 }
 .btn_open {
   @include d-flex-center;
-
   width: 50px;
   height: 50px;
-
   border-radius: 100%;
 }
 .form {
@@ -100,33 +83,24 @@ $inputColor: rgb(220, 220, 220);
   left: 0;
   top: 0;
   z-index: 100;
-
   @include d-flex-column;
-
   max-width: 300px;
   overflow: hidden;
   transform: scale(auto);
-
   background-color: #fff;
   opacity: 1;
   border-radius: 5px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
-  transition: all .3s;
-
+  transition: all 0.3s;
   cursor: grab;
-
 }
 .btn_close {
   position: absolute;
   top: 0;
   right: 0;
-
   @include d-flex-center;
-
   width: 30px;
   height: 30px;
-
   i {
     pointer-events: none;
   }
@@ -135,68 +109,50 @@ $inputColor: rgb(220, 220, 220);
   width: 100%;
   margin: 20px 0;
   padding: 10px 40px 10px 20px;
-
   font-size: 24px;
   text-transform: capitalize;
 }
 .form-item {
   position: relative;
-
   width: 100%;
   padding: 20px;
 }
 .item-checkbox {
   position: relative;
-
   @include d-flex-start;
-
   padding: 10px 20px 30px 20px;
-
   &.checked {
     .castom-checkbox {
       &::after {
         opacity: 1;
       }
     }
-
     .label-checkbox {
       font-weight: normal;
       color: $inputColor;
     }
   }
-
   .castom-checkbox {
     position: absolute;
-
     @include d-flex-center;
-
     width: 20px;
     height: 20px;
     border: 2px solid $backgrounColor;
-
     cursor: pointer;
-
     &::after {
       content: "";
-
       display: block;
       width: 15px;
       height: 15px;
-
       background-color: $buttonColor;
       opacity: 0;
-
       transition: all 0.2s;
     }
   }
-
   .label-checkbox {
     padding: 0 30px;
-
     font-weight: 500;
-
     transition: color 0.2s;
-
     user-select: none;
     cursor: pointer;
   }
@@ -204,11 +160,8 @@ $inputColor: rgb(220, 220, 220);
 .input {
   width: 100%;
   padding: 5px;
-
   font-size: 16px;
-
   background-color: $inputColor;
-
   &:focus + .label,
   &:not(:placeholder-shown) + .label {
     top: 10px;
@@ -221,20 +174,15 @@ $inputColor: rgb(220, 220, 220);
   position: absolute;
   top: 50%;
   left: 25px;
-
   margin-top: -8px;
-
   font-size: 16px;
-
   transition: all 0.2s ease-in-out;
-
   pointer-events: none;
 }
 .btn_submit {
   width: 100%;
   padding: 10px;
 }
-// form ----- //
 .hide {
   transform: translate(-50%, -50%) scale(0, 0);
   opacity: 0;
