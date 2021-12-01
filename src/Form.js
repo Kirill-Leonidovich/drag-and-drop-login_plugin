@@ -1,79 +1,79 @@
 export class Form {
-  constructor({ wrapper }) {
-    this.wrapper = wrapper
-    this.offsetX
-    this.offsetY
-    this.btnOpen
-    this.form
+	constructor({ wrapper }) {
+		this.wrapper = wrapper
+		this.offsetX
+		this.offsetY
+		this.btnOpen
+		this.form
 
-    this.renderBtnOpen()
-  }
+		this.renderBtnOpen()
+	}
 
-  #checkTarget(event) {
-    event.preventDefault()
+	#checkTarget(event) {
+		event.preventDefault()
 
-    if (event.target.dataset.type === 'close') {
-      this.removeForm()
-      this.form.removeEventListener('click', this.#checkTarget)
-    }
-    if (event.target.closest('.item-checkbox')) {
-      this.checked()
-    }
-  }
+		if (event.target.dataset.type === 'close') {
+			this.removeForm()
+			this.form.removeEventListener('click', this.#checkTarget)
+		}
+		if (event.target.closest('.item-checkbox')) {
+			this.checked()
+		}
+	}
 
-  #addFormHandler() { 
-    this.form.addEventListener('click', this.#checkTarget.bind(this))
-    this.form.addEventListener('dragstart', this.#dragStart)
-    this.form.addEventListener('dragend', this.#dragEnd)
-  }
-  
-  #removeFormHandler() {
-    this.form.removeEventListener('click', this.#checkTarget.bind(this))
-    this.form.removeEventListener('dragstart', this.#dragStart)
-    this.form.removeEventListener('dragend', this.#dragEnd)
-  }
+	#addFormHandler() {
+		this.form.addEventListener('click', this.#checkTarget.bind(this))
+		this.form.addEventListener('dragstart', this.#dragStart)
+		this.form.addEventListener('dragend', this.#dragEnd)
+	}
 
-  #dragStart(event) {
-    this.offsetX = event.offsetX
-    this.offsetY = event.offsetY
-  }
+	#removeFormHandler() {
+		this.form.removeEventListener('click', this.#checkTarget.bind(this))
+		this.form.removeEventListener('dragstart', this.#dragStart)
+		this.form.removeEventListener('dragend', this.#dragEnd)
+	}
 
-  #dragEnd(event) {
-    const { clientX, clientY } = event
+	#dragStart(event) {
+		this.offsetX = event.offsetX
+		this.offsetY = event.offsetY
+	}
 
-    event.target.style.left = clientX - (this.offsetX || 0) + 'px'
-    event.target.style.top = clientY - (this.offsetY || 0) + 'px'
-  }
+	#dragEnd(event) {
+		const { clientX, clientY } = event
 
-  #setPosition(el) {
-    el.style.left = (this.btnOpen?.offsetLeft || 0) + 'px'
-    el.style.top = (this.btnOpen?.offsetTop || 0) + 'px'
-  }
+		event.target.style.left = clientX - (this.offsetX || 0) + 'px'
+		event.target.style.top = clientY - (this.offsetY || 0) + 'px'
+	}
 
-  #showForm(el) {
-    this.#setPosition(el)
-    setTimeout(() => el.classList.remove('hide'), 0)
-    this.#addFormHandler()
-  }
+	#setPosition(el) {
+		el.style.left = (this.btnOpen?.offsetLeft || 0) + 'px'
+		el.style.top = (this.btnOpen?.offsetTop || 0) + 'px'
+	}
 
-  renderBtnOpen() {
-    if (this.btnOpen) return
+	#showForm(el) {
+		this.#setPosition(el)
+		setTimeout(() => el.classList.remove('hide'), 0)
+		this.#addFormHandler()
+	}
 
-    const btnOpen = document.createElement('button')
+	renderBtnOpen() {
+		if (this.btnOpen) return
 
-    btnOpen.classList.add('btn', 'btn_open', 'hide')
-    btnOpen.setAttribute('data-type', 'open')
-    btnOpen.insertAdjacentHTML('beforeend', `<i class="fas fa-user"></i>`)
+		const btnOpen = document.createElement('button')
 
-    this.wrapper.insertAdjacentElement('beforeend', btnOpen)
-    setTimeout(() => btnOpen.classList.remove('hide'), 100)
+		btnOpen.classList.add('btn', 'btn_open', 'hide')
+		btnOpen.setAttribute('data-type', 'open')
+		btnOpen.insertAdjacentHTML('beforeend', `<i class="fas fa-user"></i>`)
 
-    this.btnOpen = btnOpen
-    this.btnOpen.addEventListener('click', this.createForm.bind(this))
-  }
+		this.wrapper.insertAdjacentElement('beforeend', btnOpen)
+		setTimeout(() => btnOpen.classList.remove('hide'), 100)
 
-  createForm() {
-    const form = `
+		this.btnOpen = btnOpen
+		this.btnOpen.addEventListener('click', this.createForm.bind(this))
+	}
+
+	createForm() {
+		const form = `
       <form class="form hide" action="#" draggable="true">
         <button class="btn btn_close" data-type="close">
           <i class="fas fa-times"></i>
@@ -106,49 +106,49 @@ export class Form {
       </form>
     `
 
-    if (!this.form) {
-      this.wrapper.insertAdjacentHTML('beforeend', form)
-      this.form = this.wrapper.querySelector('.form')
-      this.#showForm(this.form)
-    }
-  }
+		if (!this.form) {
+			this.wrapper.insertAdjacentHTML('beforeend', form)
+			this.form = this.wrapper.querySelector('.form')
+			this.#showForm(this.form)
+		}
+	}
 
-  checked() {
-    const castomCheckbox = this.wrapper.querySelector('.item-checkbox')
+	checked() {
+		const castomCheckbox = this.wrapper.querySelector('.item-checkbox')
 
-    if (!castomCheckbox) return
+		if (!castomCheckbox) return
 
-    if (castomCheckbox.classList.contains('checked')) {
-      castomCheckbox.classList.remove('checked')
-      inputCheckbox.checked = false
-    } else {
-      castomCheckbox.classList.add('checked')
-      inputCheckbox.checked = true
-    }
-  }
+		if (castomCheckbox.classList.contains('checked')) {
+			castomCheckbox.classList.remove('checked')
+			inputCheckbox.checked = false
+		} else {
+			castomCheckbox.classList.add('checked')
+			inputCheckbox.checked = true
+		}
+	}
 
-  removeForm() {
-    if (this.form) {
-      this.form.classList.add('hide')
-      this.#removeFormHandler()
-      setTimeout(() => {
-        this.form.remove()
-        this.form = null
-      }, 300)
-    }
-  }
+	removeForm() {
+		if (this.form) {
+			this.form.classList.add('hide')
+			this.#removeFormHandler()
+			setTimeout(() => {
+				this.form.remove()
+				this.form = null
+			}, 300)
+		}
+	}
 
-  destroy() {
-    this.removeForm()
+	destroy() {
+		this.removeForm()
 
-    if (this.btnOpen) {
-      this.btnOpen.classList.add('hide')
-      this.btnOpen.removeEventListener('click', this.createForm.bind(this))
+		if (this.btnOpen) {
+			this.btnOpen.classList.add('hide')
+			this.btnOpen.removeEventListener('click', this.createForm.bind(this))
 
-      setTimeout(() => {
-        this.btnOpen.remove()
-        this.btnOpen = null
-      }, 300)
-    }
-  }
+			setTimeout(() => {
+				this.btnOpen.remove()
+				this.btnOpen = null
+			}, 300)
+		}
+	}
 }
