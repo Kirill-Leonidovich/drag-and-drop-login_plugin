@@ -49,19 +49,6 @@ $inputColor: rgb(220, 220, 220);
 .main {
 	flex: auto;
 }
-.footer {
-	text-align: center;
-	background-color: $backgrounColor;
-}
-.footer__link {
-	margin: 0 20px;
-	font-size: 20px;
-	color: $textColor;
-	transition: color 0.3s;
-	&:hover {
-		color: $textColorHovered;
-	}
-}
 .btn {
 	font-size: 18px;
 	color: $textColor;
